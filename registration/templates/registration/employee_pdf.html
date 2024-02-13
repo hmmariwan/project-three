@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        .sagency{
+            color: blueviolet;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 30px;
+            font-style: oblique;
+        }
+        .sname{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+        }
+        .stax{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+
+        }
+        .thead{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;   
+        }
+        .shours{
+            margin-left: 50px;  
+        }
+        .hide-zero{
+            display: none;
+        }
+
+    </style>
+
+    {% block content %}
+
+        <h1 class="sagency">New Agency</h1>
+        <hr>
+        <pre> <h1 class="sname">Employee ID: {{employee.eid.id}}                        Name: <span> {{employee.eid.fname}}</span> <span>{{employee.eid.lname}}</span>                                                  Email: {{employee.eid.email}} </h1>  </pre>
+        <pre><h1 class="stax">Tax Code: {{employee.eid.tcode}}                      National Insurance Number: {{employee.eid.ni}}                                  Date: {{employee.date}}</h1></pre>
+        <br><br><br>
+        <table >
+            <thead >
+                <tr style="width: 4000px;">
+                    <th class="thead">Hours</th>
+                    <th class="thead">Rate</th>
+                    <th class="thead">Deductions</th>
+                    <th class="thead">Gross Salary</th>
+                    <th class="thead">Net Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <h1>{{employee.wages.gross_salary}}</h1>
+                    <td class="shours" >
+                        <div style="display: inline-block;">
+                            <div><h2>Normal: {{employee.normal_hours}}</h2></div>
+                            <div><h2>Overtime: {{employee.overtime_hours}}</h2></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: inline-block;">
+                            <div><h2 style="margin-left: 55px;">       {{employee.npr}}</h2></div>
+                            <div><h2 style="margin-left: 55px;"> {{employee.opr}}</h2></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: inline-block;">
+                            <div><h2 style="margin-left: 45px;" >Tax:   {{employee.tax}}</h2></div>
+                            <div><h2 style="margin-left: 45px;" >NI: {{employee.ni_contri}}</h2></div>
+                            <div><h2 style="margin-left: 45px;" >Pension: {{employee.pen_contri}}</h2></div>
+                            <div><h2 style="margin-left: 45px;" >UL: {{employee.stu_loan}}</h2></div>
+                            <div><h2 style="margin-left: 45px;" >PL: {{employee.post_stu_loan}}</h2></div>
+                        </div>
+                    </td>
+                    <td class="shours" ><h2>{{employee.gross_salary}}</h2></td>
+                    <td class="shours" ><h2>{{employee.net_salary}}</h2></td>
+                </tr> 
+            </tbody>
+        </table><br><br><br>
+        <pre><h2 style="margin-left: 50px;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">Total                                                                             {{employee.all_deductions}}</h2></pre>
+
+    {% endblock %}
+
+</body>
+</html>
+
+
+
+
+

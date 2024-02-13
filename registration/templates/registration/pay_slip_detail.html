@@ -1,0 +1,85 @@
+{% extends 'registration/index.html' %}
+{% load static %}
+{% block title %}Candidate pay slip{% endblock %}
+{% block css %} 
+
+{% endblock %}
+
+{% block optional_div %}
+{% endblock %}
+
+{% block content %}
+<style>
+    .toasted-message {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .toasted-message.success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+    .logout-container{
+        position: absolute;
+        top: 70px;
+        right: 50px;
+    }
+    .logout-container a{
+        text-decoration: none;
+    }
+    .logout-container:hover{
+        color: rgb(51, 177, 51);
+    }
+    
+</style>
+
+{% if messages %}
+    <div class="toasted-message success" id="toasted-message">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            var toastedMessage = document.getElementById('toasted-message');
+            if (toastedMessage) {
+                toastedMessage.style.display = 'none';
+            }
+        }, 3000);  
+    </script>
+{%endif%}
+
+<div class="logout-container">
+    <a href="{% url 'employee_dashboard' %}" class="btn btn-secondary" type="submit">Dashboard</a>
+</div>
+
+<h1>Pay slip detail</h1>
+<h3>
+    Download Pay Slip as PDF: <a href="{% url 'generate_pdf' employee.id %}" target="_blank">Download PDF</a>
+</h3>
+
+<h2>Employee Information</h2>
+<p>First Name: {{ employee.fname }}</p>
+<p>Last Name: {{ employee.lname }}</p>
+<p>Email: {{ employee.email }}</p>
+
+<h2>Timesheet Information</h2>
+<p>Total Hours: {{ timesheet.total_hours }}</p>
+<p>Normal Pay Rate: {{ timesheet.npr }}</p>
+<p>Overtime Pay Rate: {{ timesheet.opr }}</p>
+
+<h2>Pay Slip Details</h2>
+<p>Gross Salary: {{ timesheet.wages}}</p>
+<p>Tax: {{ timesheet.tax }}</p>
+<p>NI: {{ timesheet.ni_contri }}</p>
+<p>Pension: {{ timesheet.pen_contri }}</p>
+<p>Plan 2: {{ timesheet.stu_loan }}</p>
+<p>PL: {{ timesheet.post_stu_loan }}</p>
+<p>Total dudctions: {{ timesheet.all_deductions }}</p>
+<p>Net Salary: {{ timesheet.net_salary }}</p>
+
+{% endblock %}
+

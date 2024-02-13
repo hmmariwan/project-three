@@ -1,0 +1,126 @@
+
+    .em-dash{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+    }
+    .myf{
+        color:purple;
+        margin: 5px;
+        
+    }
+    .myp{
+        color:purple;
+        margin: 5px;
+    }
+    .myn{
+        color:purple;
+        margin: 5px;
+    }
+    .myl{
+        color:purple;
+        margin: 5px;
+    }
+    .myf:not([disable]):hover{
+        background: transparent;
+        color:white;
+    }
+    .myp:not([disable]):hover{
+        background: transparent;
+        color:white;
+    }
+    .myn:not([disable]):hover{
+        background: transparent;
+        color:white;
+    }
+    .myl:not([disable]):hover{
+        background: transparent;
+        color:white;
+    }
+    .para{
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        size: 16px;
+        margin-left: 9px;
+    }
+    .trow{
+        color: blue;
+    }
+    .tdi{
+        color: blueviolet;
+    }
+    .tdf{
+        color: blueviolet;
+    }
+    .tdl{
+        color: blueviolet;
+    }
+    .tde{
+        color: blueviolet;
+    }
+    .tdn{
+        color: blueviolet;
+    }
+    .tdt{
+        color: blueviolet;
+    }
+    .tds{
+        color: blueviolet;
+    }
+    .tdp{
+        color: blueviolet;
+    }
+    .myjum{
+            background-color: rgb(203, 191, 191);
+            width: 105vw;
+            min-height: 45vh;
+        }
+    .mytrash{
+            font-size: 16px;
+            transition: font-size 0.3s;
+        }
+    .mytrash:hover{
+        font-size: 32px;
+        color: red;
+    }
+    
+    .mypen{
+            font-size: 16px;
+            transition: font-size 0.3s;
+        }
+    .mypen:hover{
+        font-size: 32px;
+        color: blue;
+    }
+    
+    .myad{
+            color: purple;
+            margin: 550px;
+            width: 200px;
+        }
+    .myadd{
+            color: black;
+        }
+            
+    .swal-title {
+            color: black;
+            font-size: 30px;
+            }
+
+    .swal-text {
+            color:black;
+            font-size: 15px;
+            }
+    .swal-button:not([disable]):hover{
+            background: transparent;
+            color:black;
+            border: 1px solid;
+        }
+    .pag{
+        margin-left: 500px;
+    }
+    .table{
+        margin-left: 2px;
+        margin-right: 30px;
+    }

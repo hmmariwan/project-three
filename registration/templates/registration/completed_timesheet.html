@@ -1,0 +1,176 @@
+{% extends 'registration/index.html' %}
+{% load static %}
+{% block title %}Completed timsheet{% endblock %}
+{% block css %} 
+
+{% endblock %}
+
+{% block content %}
+<style>
+    .toasted-message {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .toasted-message.success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+    body{
+        background-color: hwb(141 38% 55%);
+    }
+    .se{
+        background-color: rgb(180, 116, 240);
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: black;
+        font-size: 12px;
+        transition: font-size 0.3s;
+    }
+    .se:hover{
+        font-size: 20px;
+        color: blue;
+    }
+    .sd{
+        background-color: rgb(180, 116, 240);
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: red;
+        font-size: 12px;
+        transition: font-size 0.3s;
+    }
+    .sd:hover{
+        font-size: 20px;
+        color: red;
+        
+    }
+
+    .pag{
+        margin-left: 50px;
+        margin-top: 20px;
+    }
+    .myf{
+        color: black;
+        margin: 5px;
+        
+    }
+    .myp{
+        color: black;
+        margin: 5px;
+    }
+    .myn{
+        color: black;
+        margin: 5px;
+    }
+    .myl{
+        color: black;
+        margin: 5px;
+    }
+    .myf:not([disable]):hover{
+        background: transparent;
+        color:white;
+    }
+    .myp:not([disable]):hover{
+        background: transparent;
+        color:white;
+    }
+    .myn:not([disable]):hover{
+        background: transparent;
+        color:white;
+    }
+    .myl:not([disable]):hover{
+        background: transparent;
+        color:white;
+    }
+    .em-dash{
+        position: fixed;
+        top: 110px;
+        right: 50px;
+    }
+</style>
+
+{% if messages %}
+    <div class="toasted-message success" id="toasted-message">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            var toastedMessage = document.getElementById('toasted-message');
+            if (toastedMessage) {
+                toastedMessage.style.display = 'none';
+            }
+        }, 3000);  
+    </script>
+{% endif %}
+
+<div class="container"> 
+    <div class="col-md-8 mt-3">
+        <div class="jumbotron">
+            <p class="para">The following table shows the completed timesheet.</p> 
+            <button class="em-dash">
+                <a href="{% url 'employer_dashboard' %}">Dashboard</a>
+            </button>
+
+            <table class="bless" style="width: 1000px;text-align: center;">
+                <thead class="border-bottom font-weight-bold">
+                    <tr class="trow">
+                        
+                        <td>Employee ID</td>
+                        <td>Last Name</td>
+                        <td>Total Hours</td>
+                        <td>Normal Pay Rate</td>
+                        <td>Overtime Pay Rate</td>
+                        <td>Date</td>
+                        <td>Edit</td>
+                        <td>Delete</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in context %}
+                        <tr>
+                            <td>{{employee.eid}}</td>
+                            <td>{{employee.eid.lname}}</td>
+                            <td>{{employee.total_hours}}</td>
+                            <td>{{employee.npr}}</td>
+                            <td>{{employee.opr}}</td>
+                            <td>{{employee.date}}</td>
+                            <td><a href="{% url 'timesheet_update' employee.id %}" class="se btn btn-outline-success btn-sm">Edit</a></td>
+                            <td>
+                                <script>
+                                    function confirmDelete(record){
+                                        return confirm("Are you sure to delete " + record + " ")
+                                    }
+                                </script>
+                                {% with employee.eid as record %} 
+                                    
+                                    <a href="{% url 'timesheet_delete' employee.id %}"  onclick="return confirmDelete('{{ record }}')" class="sd btn btn-outline-success btn-sm" >Delete</a>
+                                {% endwith %} 
+                            </td>         
+                        </tr>  
+                    {% endfor %} 
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="pag">
+    {% if context.has_previous %}
+    <a class="myf" href="?page=1"> &laquo First Page</a>
+    <a class="myp" href="?page={{ context.previous_page_number }}"> Previous Page</a>
+    {% endif %}
+    Page {{ context.number }} of {{ context.paginator.num_pages }}
+    {% if context.has_next %}
+    <a class="myn" href="?page={{ context.next_page_number }}"> Next Page</a>
+    <a class="myl" href="?page={{ context.paginator.num_pages }}"> Last Page &raquo</a>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block optional_div %}
+{% endblock %}

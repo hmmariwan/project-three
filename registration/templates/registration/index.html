@@ -1,0 +1,339 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}Index{% endblock %}</title>
+    {% block css %} {% endblock %}
+
+    <!-- using a below library for a hamburger icon-->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <!--a library for using a FontAwesome icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <!--Bootstrap library that provides a pre-designed of buttons,forms,navigation bars,etc-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Bootstrap's JavaScript library-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  </head>
+  
+  
+  <body>
+
+    {% block optional_div %}
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
+  
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+  
+      :root {
+        --dark-grey: #333333;
+        --medium-grey: #636363;
+        --light-grey: #eeeeee;
+        --ash: #f4f4f4;
+        --primary-color: #2b72fb;
+        --white: white;
+        --border: 1px solid var(--light-grey);
+        --shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+          rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+      }
+  
+      ul {
+        list-style: none;
+      }
+  
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+  
+      .menu-bar button, .nav-end button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: inherit;
+      }
+  
+      #nav-menu {
+        background-color: rgb(161, 161, 241);
+        border-bottom: var(--border);/* creating a border for the header's bottom*/
+      }
+  
+      .index-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1600px;
+        margin: 0 auto;
+        column-gap: 2rem;
+        height: 90px;
+        padding: 1.2rem 3rem;
+      }
+  
+      .menu {
+        position: relative;
+        
+      }
+  
+      .menu-bar .nav-link {
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: -0.6px;
+        padding: 0.3rem;
+        min-width: 60px;
+        margin: 0 0.6rem;
+      }
+  
+      .menu-bar .nav-link:hover,
+      .dropdown-link:hover {
+        color: var(--primary-color);
+      }
+  
+      .nav-start, .nav-end, .menu-bar{
+        display: flex;
+        align-items: center;
+      }
+  
+      .dropdown {
+        display: flex;
+        flex-direction: column;
+        min-width: 100px;
+        background-color:var(--white);
+        border-radius: 10px;
+        position: absolute;
+        top: 36px;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(0.97) translateX(-5px);
+        transition: 0.1s ease-in-out;
+        box-shadow: var(--shadow);
+      }
+  
+      .dropdown.active {
+        visibility: visible;
+        opacity: 1;
+        transform: scale(1) translateX(5px);
+      }
+  
+      .dropdown ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1.2rem;
+        font-size: 0.95rem;
+      }
+  
+      .dropdown-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.15rem;
+      }
+  
+      .dropdown-link {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+        border-radius: 7px;
+        transition: 0.1s ease-in-out;
+      }
+  
+      #hamburger {
+        display: none;
+        padding: 0.1rem;
+        margin-left: 1rem;
+        font-size: 1.9rem;
+      }
+  
+      @media (max-width: 1100px) {
+        #hamburger {
+          display: block;
+        }
+  
+        .index-container {
+          padding: 1.2rem;
+        }
+  
+        .menu {
+          display: none;
+          position: absolute;
+          top: 87px;
+          left: 0;
+          min-height: 100vh;
+          width: 100vw;
+        }
+  
+        .dropdown {
+          display: none;
+          min-width: 100%;
+          border: none !important;
+          border-radius: 5px;
+          position: static;
+          top: 0;
+          left: 0;
+          visibility: visible;
+          opacity: 1;
+          transform: none;
+          box-shadow: none;
+        }
+  
+        .menu.show, .dropdown.active {
+          display: block;
+        }
+  
+        .dropdown ul {
+          padding-left: 0.3rem;
+        }
+  
+        .menu-bar {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          row-gap: 1rem;
+          padding: 1rem;
+        }
+  
+        .menu-bar .nav-link {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          font-weight: 600;
+          font-size: 1.2rem;
+          margin: 0;
+        }
+      }
+  
+    </style>
+
+    <header id="nav-menu" aria-label="navigation bar">
+      <div class="index-container">
+        <div class="nav-start">
+          <nav class="menu">
+            <ul class="menu-bar">
+
+              <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+              <li>
+                <button class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true" aria-expanded="false" aria-label="discover">Employer
+                  <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div id="dropdown2" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="{% url 'employer_login' %}">Log in</a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="{% url 'employer_signup' %}">Sign up</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li><a class="nav-link" href="{% url 'candidate_view_jobs' %}">Jobs</a></li>
+              <li><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+              <li><a class="nav-link" href="{% url 'employee_signup' %}">Candidate</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="nav-end">
+          <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+            <i class="bx bx-menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <script>
+      const dropdownBtn = document.querySelectorAll(".dropdown-btn");
+      const dropdown = document.querySelectorAll(".dropdown");
+      const hamburgerBtn = document.getElementById("hamburger");
+      const navMenu = document.querySelector(".menu");
+      const links = document.querySelectorAll(".dropdown a");
+
+      function setAriaExpandedFalse() {
+        dropdownBtn.forEach((mybtn) => mybtn.setAttribute("aria-expanded", "false"));
+      }
+
+      function closeDropdownMenu() {
+        dropdown.forEach((drop) => {
+          drop.classList.remove("active");
+          drop.addEventListener("click", (e) => e.stopPropagation());
+        });
+      }
+
+      function toggleHamburger() {
+        navMenu.classList.toggle("show");
+      }
+
+      dropdownBtn.forEach((mybtn) => {
+        mybtn.addEventListener("click", function (e) {
+          const dropdownIndex = e.currentTarget.dataset.dropdown;
+          const dropdownElement = document.getElementById(dropdownIndex);
+
+          dropdownElement.classList.toggle("active");
+          dropdown.forEach((drop) => {
+            if (drop.id !== mybtn.dataset["dropdown"]) {
+              drop.classList.remove("active");
+            }
+          });
+          e.stopPropagation();
+          mybtn.setAttribute(
+            "aria-expanded",
+            mybtn.getAttribute("aria-expanded") === "false" ? "true" : "false"
+          );
+        });
+      });
+
+      // closing dropdown menu when the dropdown links are clicked
+      links.forEach((link) =>
+        link.addEventListener("click", () => {
+          closeDropdownMenu();
+          setAriaExpandedFalse();
+          toggleHamburger();
+        })
+      );
+
+      // closing dropdown menu when you click on the document body
+      document.documentElement.addEventListener("click", () => {
+        closeDropdownMenu();
+        setAriaExpandedFalse();
+      });
+
+      // closing dropdown when the escape key is pressed
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeDropdownMenu();
+          setAriaExpandedFalse();
+        }
+      });
+
+      hamburgerBtn.addEventListener("click", toggleHamburger);
+    </script>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+    
+
+    <!-- the following link and code are relating to datepicker -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Fengyuan Chen's Datepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+        $("#id_date").datepicker();
+        });
+    </script>
+
+    <!--the following link is for displaying a SweetAlert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  </body>
+</html> 

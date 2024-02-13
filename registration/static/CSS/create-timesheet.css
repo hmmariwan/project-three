@@ -1,0 +1,36 @@
+.swal-button:not([disable]):hover{
+    background: transparent;
+    color: orange;
+    border: 1px solid;
+}
+.mybtn{
+    color: black;
+    background-color:gray;
+    font-size: 12px;
+    transition: font-size 0.3s;
+}
+.mybtn:hover{
+    font-size: 20px;
+}
+.mybtn:not([disable]):hover{
+    color:blue;
+    background-color: rgb(229, 147, 229);
+}
+.myicon{
+    color: white;
+    font-size: 12px;
+    transition: font-size 0.3s;
+}
+.myicon:hover{
+    font-size: 20px;
+}
+.myicon:not([disable]):hover{
+    color:gray;
+}
+.para{font-family: 'Times New Roman', Times, serif;
+font-size: 20px;}
+.em-dash{
+    position: fixed;
+    top: 110px;
+    right: 50px;
+}

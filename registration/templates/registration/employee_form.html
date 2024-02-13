@@ -1,0 +1,104 @@
+{% extends 'registration/index.html' %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head> 
+    <title>Employee Registrations</title>
+</head>
+<body>
+    {% block content %}
+    
+    {% for message in messages %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = "{{ message }}";
+            swal("Not allowed!",m,'error')
+        </script>
+    {% endfor %}
+
+    <style>
+        body {background-color: rgb(216, 185, 178);
+
+        }
+        .em-dash{
+            position: fixed;
+            top: 110px;
+            right: 50px;
+        }
+    </style>
+    
+    <button class="em-dash">
+        <a href="{% url 'employer_dashboard' %}">Dashboard</a>
+    </button>
+
+    <div class="container" style="padding: 2px;"> 
+        <div class="jumbotron">
+            <h1 class="display-4">Employee Registrations</h1>
+            <p class="lead font-italic">Please fill in the following form to register your employee </p>
+            <hr class="my-1" style="color: blue;width: 575px;height: 5px">
+            
+            <form action=""  method="POST" autocomplete="off">
+                {% csrf_token %} 
+                <div class="row">
+                    <div class="col-md-2">
+                        {{ form.id|as_crispy_field }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ form.fname|as_crispy_field }}
+                    </div>
+                    <div class="col-md-2">
+                        {{form.lname|as_crispy_field}}
+                    </div>
+                    <div class="col-md-2">
+                        {{form.dbirth|as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ form.mobile|as_crispy_field }}
+                    </div>  
+                    <div class="col-md-4">
+                        {{ form.email|as_crispy_field }}
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        {{ form.ni|as_crispy_field }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form.tcode|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        {{ form.pension|as_crispy_field }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form.student_loan|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <button type="submit" class="mysave btn btn-success btn-lg mb-4"><i class="mysavebutn fa-solid fa-cloud"></i> Save</button>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{% url 'employee_list' %}" class="mybutn btn btn-secondary btn-block btn-lg">
+                            <i class="mydatabase fa-sharp fa-solid fa-database"></i> Database
+                        </a>
+                    </div>
+                </div>
+            </form> 
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block optional_div %}
+    {% endblock %}
+
+</body>
+</html>
+
+
+
+

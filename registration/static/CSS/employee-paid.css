@@ -1,0 +1,62 @@
+.para{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+.pag{
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.myf{
+    color: black;
+    margin: 5px;
+    
+}
+.myp{
+    color: black;
+    margin: 5px;
+}
+.myn{
+    color: black;
+    margin: 5px;
+}
+.myl{
+    color: black;
+    margin: 5px;
+}
+.myf:not([disable]):hover{
+    background: transparent;
+    color:white;
+}
+.myp:not([disable]):hover{
+    background: transparent;
+    color:white;
+}
+.myn:not([disable]):hover{
+    background: transparent;
+    color:white;
+}
+.myl:not([disable]):hover{
+    background: transparent;
+    color:white;
+}
+
+.vp{
+    color: black;
+    font-size: 12px;
+    transition: font-size 0.3s;
+}
+.vp:hover{
+    font-size: 18px;
+    color: green;
+}
+
+.trow{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: blue;
+}
+.em-dash{
+    position: fixed;
+    top: 10px;
+    right: 50px;
+}

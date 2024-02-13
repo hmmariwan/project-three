@@ -1,0 +1,37 @@
+/* Default styles for dropdown */
+    .em-nav .em-dropdown-menu {
+        display: none;
+    }
+
+    /* Media query for large screens */
+    @media (min-width: 781px) {
+        .em-nav .em-dropdown:hover .em-dropdown-menu {
+            display: block;
+        }
+        ul li{
+            margin-bottom: 20px;
+            list-style: none;
+        }
+        li a{
+            text-decoration: none;
+        }
+    }
+
+    /* Media query for small screens (you can adjust the max-width as needed) */
+    @media (max-width: 780px) {
+        .em-nav .em-dropdown a.em-dropdown-toggle::after {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .em-nav .em-dropdown:hover .em-dropdown-menu {
+            display: block;
+        }
+        ul li{
+            margin-bottom: 20px;
+            list-style: none;
+        }
+        li a{
+            text-decoration: none;
+        }
+    }

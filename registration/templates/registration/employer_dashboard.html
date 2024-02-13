@@ -1,0 +1,72 @@
+{% extends 'registration/index.html' %}
+{% load static %}
+{% block title %}Employer dashboard{% endblock %}
+{% block css %} 
+<link rel="stylesheet" href="{% static 'CSS/employer-page.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="title">Welcome the employer!</h1>
+<p id="hello">Hello, {{ user.email }}! This is your dashboard.</p>
+
+<style>
+    .toasted-message {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .toasted-message.success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+</style>
+
+{% if messages %}
+    <div class="toasted-message success" id="toasted-message">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            var toastedMessage = document.getElementById('toasted-message');
+            if (toastedMessage) {
+                toastedMessage.style.display = 'none';
+            }
+        }, 3000);  
+    </script>
+{% endif %}
+
+    <ul class="em-nav">
+        <li><a href="{% url 'employee_insert' %}">Registration</a></li>
+        <li><a href="{% url 'employee_list' %}">Database</a></li>
+        <li class="em-dropdown">
+            <a href="#" class="em-dropdown-toggle">Timesheet</a>
+            <div class="em-dropdown-menu">
+                <ul>
+                    <li>
+                        <a href="{% url 'employee_timesheet' %}">Create</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'completed_timesheet'%}">Update</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li><a href="{% url 'employee_payment' %}">Payslips</a></li>
+        <li><a href="{% url 'create_job' %}">Create Job</a></li>
+        <li><a href="{% url 'employer_view_jobs' %}">Jobs</a></li>
+    </ul>
+
+      
+
+<a href="{% url 'employer_login' %}" class="btn btn-secondary" type="submit">Logout</a>
+
+
+{% endblock %}
+
+{% block optional_div %}
+{% endblock %}

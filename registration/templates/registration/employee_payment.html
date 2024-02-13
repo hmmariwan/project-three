@@ -1,0 +1,94 @@
+{% extends 'registration/index.html' %}
+{% load static %}
+{% block title %}Employee payment{% endblock %}
+{% block css %} 
+<link rel="stylesheet" href="{% static 'CSS/employee-paid.css' %}">
+{% endblock %}
+{% block content %}
+
+    <style>
+        body{
+            background-color:rgba(192, 138, 132, 0.981);
+        }
+       
+    </style>
+
+    <button class="em-dash">
+        <a href="{% url 'employer_dashboard' %}">Dashboard</a>
+    </button>
+
+    <div class="container">
+        <p class="para">This page shows an online payslip and its PDF.</p> 
+
+        <table class="table table-striped text-center">
+            <thead class="bless font-weight-bold">
+                <tr class="trow">
+                    <th>ID</th>
+                    <th>Surname</th>
+                    <th>Hours</th>
+                    <th>NPR £</th>
+                    <th>OPR £</th>
+                    <th>Gross</th>
+                    <th>TC</th>
+                    <th>Tax</th>
+                    <th>NI</th>
+                    <th>Pension</th>
+                    <th>Loan</th>
+                    <th>UG</th>
+                    <th>PG</th>
+                    <th>Net</th>
+                    <th>Date</th>
+                    <th>PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in context %}
+                    <tr>
+                        <td>{{employee.eid}}</td>
+                        <td>{{employee.eid.lname}}</td>
+                        <td>{{employee.total_hours}}</td>
+                        <td>{{employee.npr}}</td>
+                        <td>{{employee.opr}}</td>
+                        <td>{{employee.wages}}</td>
+                        <td>{{employee.eid.tcode}}</td>
+                        <td>{{employee.tax}}</td>
+                        <td>{{employee.ni_contri}}</td>
+                        <td>{{employee.pen_contri}}</td>
+                        <td>{{employee.eid.student_loan}}</td>
+                        <td>{{employee.stu_loan}}</td>
+                        <td>{{employee.post_stu_loan}}</td>
+                        <td>{{employee.net_salary}}</td>
+                        <td>{{employee.date}}</td>
+                        <td><a class="vp btn btn-outline-success btn-sm" href="{% url 'employee_pdf' employee.id %}">View PDF</a></td>
+                    </tr>
+                {% endfor %}  
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- creating a pagination -->
+    <div class="pag">
+        {% if context.has_previous %}
+        <a class="myf" href="?page=1"> &laquo First Page</a>
+        <a class="myp" href="?page={{ context.previous_page_number }}"> Previous Page</a>
+        {% endif %}
+        Page {{ context.number }} of {{ context.paginator.num_pages }}
+        {% if context.has_next %}
+        <a class="myn" href="?page={{ context.next_page_number }}"> Next Page</a>
+        <a class="myl" href="?page={{ context.paginator.num_pages }}"> Last Page &raquo</a>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block optional_div %}
+{% endblock %}
+
+
+
+
+
+
+
+

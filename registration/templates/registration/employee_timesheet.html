@@ -1,0 +1,96 @@
+{% extends 'registration/index.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Timsheet{% endblock %}
+{% block css %} 
+<link rel="stylesheet" href="{% static 'CSS/create-timesheet.css' %}">
+{% endblock %}
+
+{% block content %}
+    <style>
+        body{background-color: rgb(220, 181, 220);}
+        
+    </style>
+    
+    {% for message in messages %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = "{{ message }}";
+            swal("Not allowed!",m,'error')
+        </script>
+    {% endfor %}
+
+    <div class="container" style="margin-left: 2px;"> 
+        <div class="col-md-8 offset-md-1 mt-3">
+            <div class="jumbotron">
+                <p class="para">Please fill in the following form to save the timesheet of your employee.</p> 
+                <hr class="my-1" style="width: 600px;color: blue;">
+    
+                <button class="em-dash">
+                    <a href="{% url 'employer_dashboard' %}">Dashboard</a>
+                </button>
+
+                <form action=""  method="POST" autocomplete="off">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            {{ tform.eid|as_crispy_field }}
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            {{ tform.mon|as_crispy_field }}
+                        </div>
+                        <div class="col-md-2">
+                            {{ tform.tue|as_crispy_field }}
+                        </div> 
+                        <div class="col-md-2">
+                            {{ tform.wed|as_crispy_field }}
+                        </div> 
+                        <div class="col-md-2">
+                            {{ tform.thu|as_crispy_field }}
+                        </div>   
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            {{ tform.fri|as_crispy_field }}
+                        </div>
+                        <div class="col-md-2">
+                            {{ tform.sat|as_crispy_field }}
+                        </div> 
+                        <div class="col-md-2">
+                            {{ tform.sun|as_crispy_field }}
+                        </div>   
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            {{ tform.npr|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            {{ tform.opr|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            {{ tform.date|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <button type="submit" class="mybtn btn btn-outline-success btn-lg mb-4"><i class="myicon fa-sharp fa-solid fa-cloud"></i> Save</button>
+                        </div>   
+                    </div>    
+                </form> 
+        
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block optional_div %}
+{% endblock %}
+
+

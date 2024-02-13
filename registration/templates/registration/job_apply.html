@@ -1,0 +1,61 @@
+{% extends 'registration/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Job apply{% endblock %}
+{% block css %} 
+
+{% endblock %}
+
+{% block content %}
+<style>
+    .toasted-message {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .toasted-message.success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+    .jobs-list{
+        position: fixed;
+        top: 110px;
+        right: 50px;
+    }
+</style>
+
+{% if messages %}
+    <div class="toasted-message success" id="toasted-message">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            var toastedMessage = document.getElementById('toasted-message');
+            if (toastedMessage) {
+                toastedMessage.style.display = 'none';
+            }
+        }, 3000);  
+    </script>
+{% endif %}
+
+<h2 class="contact">Applying for a job</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="job_title" value="{{ job.title }}">
+    <input type="hidden" name="job_reference" value="{{ job.reference }}">
+    <button type="submit">Submit</button>
+</form>
+
+
+<button class="jobs-list">
+    <a href="{% url 'candidate_view_jobs' %}">Jobs list</a>
+</button>
+
+{% endblock %}

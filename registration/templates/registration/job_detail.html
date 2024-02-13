@@ -1,0 +1,33 @@
+{% extends 'registration/index.html' %}
+{% load static %}
+{% block title %}Software developer{% endblock %}
+{% block css %} 
+
+{% endblock %}
+
+{% block content %}
+<style>
+    .jobs-list{
+            position: fixed;
+            top: 110px;
+            right: 50px;
+        }
+    
+</style>
+
+<h1>Title: {{ job.title }}</h1>
+<p>Reference: {{ job.reference }}</p>
+<p>Duration: {{ job.duration }}</p>
+<p>Type: {{ job.type }}</p>
+<p>Rate: £{{ job.rate }} p/a</p>
+<p><strong>Location:</strong> {{ job.location }}</p>
+<p><strong>Description:</strong> {{ job.description }}</p>
+<button class="jobs-list">
+    <a href="{% url 'candidate_view_jobs' %}">Jobs list</a>
+</button>
+
+<button class="jobs-apply">
+    <a href="{% url 'job_apply' reference=job.reference %}">Apply</a>
+</button>
+
+{% endblock %}

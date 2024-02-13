@@ -1,0 +1,48 @@
+{% extends 'registration/index.html' %}
+{% load static %}
+{% block title %}Job{% endblock %}
+{% block css %} 
+
+{% endblock %}
+
+{%block optional_div%}
+{%endblock%}
+
+{%block content%}
+<style>
+    .em-dash{
+    position: fixed;
+    top: 110px;
+    right: 50px;
+}
+.create-job{
+    margin: 40px 20px;
+}
+</style>
+
+{% if messages %}
+    <div class="toasted-message success" id="toasted-message">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            var toastedMessage = document.getElementById('toasted-message');
+            if (toastedMessage) {
+                toastedMessage.style.display = 'none';
+            }
+        }, 3000);  
+    </script>
+{% endif %}
+
+
+<button class="em-dash">
+    <a href="{% url 'employer_dashboard' %}">Dashboard</a>
+</button>
+<form method="post" action="{% url 'create_job' %}" class="create-job">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
+{%endblock%}

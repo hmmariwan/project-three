@@ -1,0 +1,124 @@
+{% extends 'registration/index.html' %}
+{% load static %}
+{% block title %}Database{% endblock %}
+{% block css %} 
+<link rel="stylesheet" href="{% static 'CSS/employees-database.css' %}">
+{% endblock %}
+
+{% block content %}
+<style>
+    body{
+        background-color: hsla(289, 52%, 66%, 0.807);
+    }
+</style>
+
+{% for message in messages %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var m = "{{ message }}";
+        swal("Perfect!",m,'success')
+    </script>
+{% endfor %}
+
+
+<button class="em-dash">
+    <a href="{% url 'employer_dashboard' %}">Dashboard</a>
+</button>
+
+
+<div class="container">
+    <p class="para lead font-italic">The following table shows all employees in your database. You can add more employee by clicking the below Add New button.</p>
+
+    <table class="table table-striped text-center">
+        <thead class="bless font-weight-bold">
+            <tr class="trow">
+                <th class="tdata">Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>National Insurance Number</th>
+                <th>Tax Code</th>
+                <th>Student Loan</th>
+                <th>Pension</th>  
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in context %}
+                <tr>  
+                    <td class="tdi">{{employee.id}}</td>
+                    <td class="tdf">{{employee.fname}}</td>
+                    <td class="tdl">{{employee.lname}}</td>
+                    <td class="tde">{{employee.email}}</td>
+                    <td class="tdn">{{employee.ni}}</td>
+                    <td class="tdt">{{employee.tcode}}</td>
+                    <td class="tds">{{employee.student_loan}}</td>
+                    <td class="tdp">{{employee.pension}}</td>
+                    <td>
+                        <a href="{% url 'employee_update' employee.id %}">
+                            <i class="mypen fa-sharp fa-solid fa-pen-to-square"></i>
+                        </a> 
+                    </td>
+                    <td>
+                        <a href="#" onclick="delete_employee({{employee.id}})" ><i class="mytrash fa-sharp fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody> 
+    </table>
+    <script type="text/javascript">
+        var rn='{{i.id}}';
+        function delete_employee(id){
+            swal.fire({
+                "title":"Are you sure to delete the employee?",
+                html:  rn ,
+                text:"If yes, you cannot restore it later.",
+                "icon":"warning",
+                "showCancelButton":true,
+                "cancelButtonText":"No, Cancel",
+                "confirmButtonText":"Yes, Delete",
+                "reverseButtons":true,
+                "confirmButtonColor":"",
+                position:'buttom-end',
+    
+            })
+            .then (function(result){
+                if(result.isConfirmed){
+                    window.location.href="/employee/delete/"+id+"/"
+                }
+            })
+        }
+    </script> 
+    
+    <br>
+
+</div>
+    
+<br>
+
+    <!-- creating a pagination -->
+<div class="pag">
+    {% if context.has_previous %}
+    <a class="myf" href="?page=1"> &laquo First Page</a>
+    <a class="myp" href="?page={{ context.previous_page_number }}"> Previous Page</a>
+    {% endif %}
+    Page {{ context.number }} of {{ context.paginator.num_pages }}
+    {% if context.has_next %}
+    <a class="myn" href="?page={{ context.next_page_number }}"> Next Page</a>
+    <a class="myl" href="?page={{ context.paginator.num_pages }}"> Last Page &raquo</a>
+    {% endif %}
+</div>
+
+<br>
+
+<a href="{% url 'employee_insert' %}" class="myad btn btn-outline-success mt-4 mb-4">
+    <i class="myadd fa-solid fa-plus"></i> Add New Employee
+</a>
+
+{% endblock %}
+
+{% block optional_div %}
+{% endblock %}
+
+

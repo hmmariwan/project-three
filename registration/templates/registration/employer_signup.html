@@ -1,0 +1,31 @@
+{% include 'registration/index.html' %}
+
+{% block content %}
+<style>
+  body{
+      background-color: rgb(126, 126, 181);
+  }
+  form{
+    margin-left: 50px;
+  }
+  
+  .errorlist {
+    color: black; 
+    background-color: white;
+    font-size: 14px; 
+    margin-left: 260px;
+    margin-top: -100px;
+}
+  
+</style>
+  
+  <form method="post">
+    <h2>Employer Sign Up</h2>
+    {% csrf_token %}
+
+    {{form.as_p}}
+   
+    <button type="submit">Sign up</button>
+  </form>
+  <a href="{% url 'employer_login' %}">Already have an account</a>
+{% endblock %}

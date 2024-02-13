@@ -1,0 +1,80 @@
+{%extends 'registration/index.html'%}
+{%block title%}Jobs{%endblock%}
+{%block css%}{%endblock%}
+
+{% block content %}
+<style>
+    .job-container{
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+    }
+    .job-container div{
+        margin-bottom: 20px;
+    }
+    .job-container a{
+        text-decoration: underline;
+    }
+    .job-container a:hover{
+        color: green;
+    }
+    .pag{
+        margin-left: 200px;
+    }
+    .myf{
+        color:purple;
+        margin: 5px;
+        
+    }
+    .myp{
+        color:purple;
+        margin: 5px;
+    }
+    .myn{
+        color:purple;
+        margin: 5px;
+    }
+    .myl{
+        color:purple;
+        margin: 5px;
+    }
+    .myf:not([disable]):hover{
+        background: transparent;
+        color:blue;
+    }
+    .myp:not([disable]):hover{
+        background: transparent;
+        color:blue;
+    }
+    .myn:not([disable]):hover{
+        background: transparent;
+        color:blue;
+    }
+    .myl:not([disable]):hover{
+        background: transparent;
+        color:blue;
+    }
+    
+</style>
+
+<h2 >Lateast Jobs:</h2>
+<div class="job-container">
+    {% for job in context %}
+    <h2><a href="{% url 'job_detail' reference=job.reference %}">Job title: {{ job.title }}</a></h2>
+    <p>Reference: {{job.reference}}</p>
+    <p>Location: {{ job.location }}</p>
+    {% endfor %}
+</div>
+
+<div class="pag">
+    {% if context.has_previous %}
+    <a class="myf" href="?page=1"> &laquo First Page</a>
+    <a class="myp" href="?page={{ context.previous_page_number }}"> Previous Page</a>
+    {% endif %}
+    Page {{ context.number }} of {{ context.paginator.num_pages }}
+    {% if context.has_next %}
+    <a class="myn" href="?page={{ context.next_page_number }}"> Next Page</a>
+    <a class="myl" href="?page={{ context.paginator.num_pages }}"> Last Page &raquo</a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% include 'registration/index.html' %}
+
+{% block content %}
+<style>
+  .toasted-message {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+  }
+
+  .toasted-message.success {
+      color: #3c763d;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+  }
+  body{
+    background-color: hsl(218, 17%, 72%);
+  }
+</style>
+
+{% if messages %}
+  <div class="toasted-message success" id="toasted-message">
+      {% for message in messages %}
+          {{ message }}
+      {% endfor %}
+  </div>
+  <script>
+      setTimeout(function() {
+          var toastedMessage = document.getElementById('toasted-message');
+          if (toastedMessage) {
+              toastedMessage.style.display = 'none';
+          }
+      }, 5000);  
+  </script>
+{% endif %}
+
+  <h2>Employer Login page</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Log in</button>
+    <a href="{% url 'employer_password_reset_request' %}">Forgotton password</a>
+  </form>
+{% endblock %}
