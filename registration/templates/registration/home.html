@@ -6,8 +6,50 @@
 
 {% block content %}
 
+<style>
+    .image-container{
+        margin: 50px 100px;
+    }
+</style>
 
-<img src="{% static 'images/agency-logo.jpg' %}" alt="The agency image is missing">
+<div class="image-container">
+    <img src="{% static 'images/agency-logo.jpg' %}" alt="The agency image is missing" id="image-display">
+</div>
 
+<script>
+    // Array containing image URLs
+    const imageList = [
+        "{% static 'images/agency-logo.jpg' %}",
+        "{% static 'images/software-developer.jpg' %}",
+        "{% static 'images/software-engineer.jpg' %}",
+    ];
+
+    let currentIndex = 0;
+    const imageElement = document.getElementById('image-display');
+
+    function changeImage() {
+        // 1 % 3 equals 1 because when I divide 1 by 3, the remainder is 1.
+        // 2 % 3 equals 2 because when I divide 2 by 3, the remainder is 2.
+        currentIndex = (currentIndex + 1) % imageList.length;// increasing the value of currentIndex by 1
+        imageElement.src = imageList[currentIndex];
+    }
+
+    // Change image every 2 seconds
+    setInterval(changeImage, 1000);
+
+    // JavaScript for zoom effect on hover
+    imageElement.addEventListener('mouseenter', function() {
+        this.style.filter = 'grayscale(100%)'; // Convert image to black and white
+        this.style.transform = 'scale(1.2)'; // Zoom in by 20%
+        this.style.transition = 'transform 0.3s ease'; // Smooth transition for the zoom effect
+    });
+
+    imageElement.addEventListener('mouseleave', function() {
+        this.style.filter = 'none'; // Revert to original colors on mouse leave
+        this.style.transform = 'scale(1)'; // Revert back to normal size on mouse leave
+    });
+
+
+</script>
 
 {% endblock %}
