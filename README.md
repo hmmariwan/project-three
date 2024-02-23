@@ -1,6 +1,6 @@
 # IT Staffing Solutions
 
-IT Staffing Solutions is a website that connects an employer and a candidate or job seeker. The employer will need to create an account to access all databases such as Employees, Timsheets and Jobs. The employer will be able to register a candidate by giving a unique ID, creating a timesheet and job advertisment. The registered candidate will be able to view their pay slip by entering their email and date of birth on the pay slip page. The job seeker will be able to apply for a job and receive a confirmation. The website allows the user to send an online form to the employer and receive a confirmation email. The below image shows how the databases are connected.
+IT Staffing Solutions is a website that connects an employer and a candidate or job seeker. The employer will need to create an account to access all databases like Employees, Timsheets and Jobs. The employer will be able to register a candidate by giving a unique ID, creating a timesheet and job advertisment. The registered candidate will be able to view their pay slip by entering their email and date of birth on the pay slip page. The job seeker will be able to apply for a job and receive a confirmation. The website allows the user to send an online form to the employer and receive a confirmation email. The below image shows how the databases are connected.
   
 ![db](registration/static/documents/db.png)
   
