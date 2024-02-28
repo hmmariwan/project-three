@@ -143,12 +143,21 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_PORT = os.getenv('EMAIL_PORT')
+#EMAIL_HOST = os.getenv('EMAIL_HOST')
+#EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+#EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+#EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+#DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+
+EMAIL_HOST='in-v3.mailjet.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='6a1a7ec448058eaaa0a294a52e9f5e7e'
+EMAIL_HOST_PASSWORD='d279c6dc9920efe12637fe528852d7d9'
+DEFAULT_FROM_EMAIL=EMAIL_HOST_USER
+
+
 
 LOGIN_REDIRECT_URL = '/employee_dashboard/'
 
