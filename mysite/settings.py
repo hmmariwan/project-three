@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-tgzwink29z&0_cy@jw+uv5m43@dpa76y9zm__wm5pv4ssj6-m%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['third-project-b67203b6fab5.herokuapp.com']
+ALLOWED_HOSTS = ['third-project-b67203b6fab5.herokuapp.com','www.waes-bootcamp.co.uk']
 #ALLOWED_HOSTS=[]
 
 # Application definition
