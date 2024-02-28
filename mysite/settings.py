@@ -31,7 +31,6 @@ SECRET_KEY = 'django-insecure-tgzwink29z&0_cy@jw+uv5m43@dpa76y9zm__wm5pv4ssj6-m%
 DEBUG = True
 
 ALLOWED_HOSTS = ['third-project-b67203b6fab5.herokuapp.com','www.waes-bootcamp.co.uk']
-#ALLOWED_HOSTS=[]
 
 # Application definition
 
@@ -162,17 +161,6 @@ FILE_UPLOAD_HANDLERS = [
 
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440
 
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY =  os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME =  os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_SIGNATURE_NAME =  os.getenv('AWS_S3_SIGNATURE_NAME')
-AWS_S3_REGION_NAME =  os.getenv('AWS_S3_REGION_NAME')
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-AWS_S3_VERITY = True
-
-# Using Amazon S3 for storaging users uploaded media files.
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 
